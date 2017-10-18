@@ -24,8 +24,9 @@ INSERT into student(name,age,sex,number,patriarch) values(#{0},#{1},#{2},#{3},#{
 
 
 <select id="joinStudent" parameterType="entity.Student" resultMap="LeftStudent">
-SELECT s.id,s.name,s.sex,s.number,s.age,s.patriarch,sa.`name` as a
-FROM student as s LEFT JOIN squad as sa on sa.id=s.squad_id
+SELECT s.id,s.name,s.sex,s.number,s.age,s.patriarch,sa.`name` as squad,tea.`name` as teacher,col.`name` as college,sch
+.`name` as school FROM student as s LEFT JOIN squad as sa on sa.id=s.squad_id LEFT JOIN teacher as tea
+on sa.teacher_id=tea.id LEFT JOIN college as col on sa.college_id=col.id LEFT JOIN school as sch on col.school_id=sch.id
 </select>
 <resultMap type="entity.Student" id="LeftStudent">
 	<id property="id" column="id"/>
@@ -37,9 +38,20 @@ FROM student as s LEFT JOIN squad as sa on sa.id=s.squad_id
 	
 	<collection property="squid" column="squad_id" ofType="entity.Squad">
  	<id property="id" column="squad_id"/>
-	<result property="name" column="a"/>
+	<result property="name" column="squad"/>
+		<collection property="teaid" column="teacher_id" ofType="entity.Teacher">
+ 		<id property="id" column="teacher_id"/>
+		<result property="name" column="teacher"/>
+		</collection>
+		<collection property="collid" column="college_id" ofType="entity.College">
+ 		<id property="id" column="college_id"/>
+		<result property="name" column="college"/>
+			<collection property="schid" column="school_id" ofType="entity.School">
+ 			<id property="id" column="school_id"/>
+			<result property="name" column="school"/>
+			</collection>
+		</collection>
 	</collection>
-	
 </resultMap>
 
 <!-- 

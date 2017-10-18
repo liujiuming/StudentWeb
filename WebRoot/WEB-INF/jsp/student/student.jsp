@@ -1,3 +1,7 @@
+<%@page import="entity.School"%>
+<%@page import="entity.College"%>
+<%@page import="entity.Teacher"%>
+<%@page import="entity.Squad"%>
 <%@page import="entity.Student"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
@@ -37,7 +41,7 @@ $(document).ready(function(){
 
 </head>
 <%
-	List<Student> student = (List<Student>) request.getAttribute("student");
+	List<Student> stud = (List<Student>) request.getAttribute("stud");
 %>
 <body>
 
@@ -77,8 +81,8 @@ $(document).ready(function(){
         <th>年龄</th>
         <th>学号</th>
         <th>家长</th>
-        <th>任课老师</th>
         <th>所在班级</th>
+        <th>任课老师</th>
         <th>所在学院</th>
         <th>所在学校</th>
  		<th>成绩单</th>
@@ -86,7 +90,8 @@ $(document).ready(function(){
         </tr>
         </thead>
         <%
-        	for(Student stu : student){ 
+        	for(Student stu : stud){ 
+        		List<Squad> sqlist = stu.getSquid();
         %>
         <tbody>
         <input type="hidden" value="<%=stu.getId() %>" />
@@ -97,9 +102,25 @@ $(document).ready(function(){
         <td><%=stu.getAge() %></td>
         <td><%=stu.getNumber() %></td>
         <td><%=stu.getPatriarch() %></td>
+        <%for(Squad squalist : sqlist){
+        	List<Teacher> tea = squalist.getTeaid();
+        	List<College> colllist = squalist.getCollid();
+        	%>
+        <td><%=squalist.getName() %></td>
+        	<%for(Teacher tlist :tea) {
+        	%>
+        <td><%=tlist.getName() %></td>
+   		<%	}%>
+   			<%for(College clist :colllist){
+   				List<School> slist = clist.getSchid();
+   				for(School listschool : slist){
+   				%>
+   				<td><%=listschool.getName() %></td>
+   				<%} %>
+        	<td><%=clist.getName() %></td>
+        	 <%} %>
+        <% }%>
         <td></td>
-        <td></td>
-        <td><%=stu.getSquid()%></td>
         <td></td> 
         <td><a href="#" class="tablelink">查看</a> </td>
         <td><a href="updeatStudent?id=<%=stu.getId()%>" class="tablelink">修改</a>     <a href="delcetStudent?id=<%=stu.getId() %>" onClick="return confirm('确定删除?');" class="tablelink"> 删除</a></td>
