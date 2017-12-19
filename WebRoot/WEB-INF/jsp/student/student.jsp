@@ -112,16 +112,14 @@ $(document).ready(function(){
         <td><%=tlist.getName() %></td>
    		<%	}%>
    			<%for(College clist :colllist){
-   				List<School> slist = clist.getSchid();
-   				for(School listschool : slist){
+   				List<School> slist = clist.getSchid();%>
+        		<td><%=clist.getName() %></td>
+   				<%for(School listschool : slist){
    				%>
    				<td><%=listschool.getName() %></td>
    				<%} %>
-        	<td><%=clist.getName() %></td>
         	 <%} %>
         <% }%>
-        <td></td>
-        <td></td> 
         <td><a href="#" class="tablelink">查看</a> </td>
         <td><a href="updeatStudent?id=<%=stu.getId()%>" class="tablelink">修改</a>     <a href="delcetStudent?id=<%=stu.getId() %>" onClick="return confirm('确定删除?');" class="tablelink"> 删除</a></td>
         </tr> 

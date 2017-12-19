@@ -1,3 +1,5 @@
+<%@page import="entity.Teacher"%>
+<%@page import="entity.Squad"%>
 <%@page import="entity.Student"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
@@ -97,6 +99,7 @@ $(document).ready(function(){
     <%
     if(id != 0){
     	for(Student stud : stu){
+    		List<Squad> squad = stud.getSquid();
     %>
     
     <ul class="forminfo">
@@ -111,7 +114,15 @@ $(document).ready(function(){
     <li><label>学生年龄</label><input id="age" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="dfinput" value="<%=stud.getAge() %>" placeholder="请输入年龄（只能填写数字）"/></li>
     <li><label>学号</label><input id="number" onkeyup="this.value=this.value.replace(/\D/g,'')" class="dfinput" value="<%=stud.getNumber() %>" placeholder="请输入学号（只能填写数字）"/></li>
     <li><label>家长姓名</label><input  id="patr" type="text" class="dfinput" value="<%=stud.getPatriarch() %>" placeholder="请输入家长姓名"/></li>
-     <li><label>老师姓名</label><input id="teacher" type="text" class="dfinput" value="<%=stud.getTeacher_id() %>" disabled="disabled"/></li>
+    
+    <%
+    for(Squad listSquad: squad){
+		List<Teacher> teacher = listSquad.getTeaid();
+		for(Teacher listTeacher : teacher){
+    %>
+     <li><label>老师姓名</label><input id="teacher" type="text" class="dfinput" value="<%=listTeacher.getName() %>" disabled="disabled"/></li>
+	<%	}
+    }	%>     
     <li><label>请选择班级</label>
     <select id="class" style="border:1px solid black;width: 350px;height: 30px"  id="sid" >  
             <option><%if(stud.getCollege_id() != null) {%> 

@@ -2,6 +2,12 @@ package entity;
 
 import java.util.List;
 
+/**
+ * 学生表
+ * squid，班级表id
+ * @author 79392
+ *
+ */
 public class Student {
 	private int id;
 	private String name;

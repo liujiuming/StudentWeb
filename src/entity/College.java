@@ -1,7 +1,12 @@
 package entity;
 
 import java.util.List;
-
+/**
+ * 学院表
+ * school_id学校表id
+ * @author 79392
+ *
+ */
 public class College {
 	private int id;
 	private String name;

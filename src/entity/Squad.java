@@ -1,7 +1,13 @@
 package entity;
 
 import java.util.List;
-
+/**
+ * 班级表
+ * teacher_id;老师表id
+ * college_id;学院表id
+ * @author 79392
+ *
+ */
 public class Squad {
 	private String name;
 	private int id;
