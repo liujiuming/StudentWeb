@@ -10,11 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import entity.College;
-import entity.School;
 import entity.Squad;
 import entity.Student;
-import entity.Teacher;
 import service.StudentService;
 
 @Controller
@@ -27,31 +24,21 @@ public class StudentController {
 	public ModelAndView backgroundshow(HttpServletRequest request) {
 		
 		ModelAndView mv = new ModelAndView("student/student");
+		
+	    List<Student> student =	stu.selectStudent();
 	    List<Student> stud = stu.joinStudent();
 	    for (int i = 0; i < stud.size(); i++) {
 	    	List<Squad> squ = stud.get(i).getSquid();
 	    	for (int j = 0; j < squ.size(); j++) {
 	    		System.out.println(squ.get(j).getName());
-	    		List<Teacher> teachers = squ.get(j).getTeaid();
-	    		List<College> College = squ.get(j).getCollid();
-	    		for(Teacher telist : teachers ){
-	    			System.out.println(telist.getName());
-	    		}
-	    		for(College list : College ){
-	    			System.out.println(list.getName());
-	    			List<School> schlist =	list.getSchid();
-	    			for(School listschool : schlist){
-	    				System.out.println(listschool.getName());
-	    			}
-	    		}
-	    		
 			}
 	    	System.out.println(stud.get(i).getName());
 	    	System.out.println(stud.get(i).getAge());
 	    	System.out.println(stud.get(i).getNumber());
 	    	System.out.println(stud.get(i).getPatriarch());
 		}
-	    mv.addObject("stud",stud);
+		mv.addObject("student",student);
+		
 		return mv;
 	}
 	
