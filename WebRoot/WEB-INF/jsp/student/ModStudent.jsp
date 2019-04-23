@@ -78,8 +78,8 @@ $(document).ready(function(){
 	if((Integer)request.getAttribute("id") != null){
 		id = (Integer)request.getAttribute("id");
 	}
-	if((List<Student>)request.getAttribute("student") != null){
-		stu = (List<Student>)request.getAttribute("student");
+	if((List<Student>)request.getAttribute("stud") != null){
+		stu = (List<Student>)request.getAttribute("stud");
 	}
 %>
 

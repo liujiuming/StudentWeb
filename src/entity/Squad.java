@@ -1,6 +1,5 @@
 package entity;
 
-<<<<<<< HEAD
 import java.util.List;
 /**
  * �༶��
@@ -9,11 +8,11 @@ import java.util.List;
  * @author 79392
  *
  */
-=======
->>>>>>> parent of cc3d776... 关联表的查询
 public class Squad {
 	private String name;
 	private int id;
+	private List<Teacher> teaid;
+	private List<College> collid;
 	public String getName() {
 		return name;
 	}
@@ -25,5 +24,17 @@ public class Squad {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public List<Teacher> getTeaid() {
+		return teaid;
+	}
+	public void setTeaid(List<Teacher> teaid) {
+		this.teaid = teaid;
+	}
+	public List<College> getCollid() {
+		return collid;
+	}
+	public void setCollid(List<College> collid) {
+		this.collid = collid;
 	}
 }
